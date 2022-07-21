@@ -63,7 +63,7 @@ export default function InteractiveInputRow({
   }
 
   const getInputValue = () => {
-    console.log(inputRef.current.value)
+    onClickEnter(inputRef.current.value);
   }
 
   return (
