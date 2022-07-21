@@ -18,6 +18,7 @@ export default function PoolManagementWithdraw({ tokens }) {
     percentage: "",
     tokenInputs: "",
   })
+  const [percentValue, setPercentValue] = useState()
   function onFormChange(data) {
     setFormStateData(data)
     setPercentValue(data.percentage)
