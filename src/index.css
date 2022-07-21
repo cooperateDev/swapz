@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.to-coolGray-700 {
+  --tw-gradient-to: #374151;
+}
+
+.from-coolGray-900 {
+  --tw-gradient-from: #111827;
+  --tw-gradient-stops: var(--tw-gradient-from),
+    var(--tw-gradient-to, rgba(17, 24, 39, 0));
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.bg-tea {
+  background: linear-gradient(rgb(53, 58, 64) 0%, rgb(22, 23, 27) 100%);
+}
+
+.border-custom {
+  border-right: 2px solid rgba(133, 133, 133, 0.1);
+}
+
+.bg-modal {
+  background-color: rgb(44, 48, 56);
+}
+
+.modal-style {
+  border: 1px solid rgb(44, 48, 56);
+  box-shadow: rgb(0 0 0 / 5%) 0px 4px 8px 0px;
+}
+
+.bg-modal-item {
+  background-color: rgb(76, 80, 86);
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.nav-header {
+  padding: 0.2rem 1.5rem;
+  height: 55px;
+  background: linear-gradient(rgb(53, 58, 64) 0%, rgb(22, 23, 27) 100%);
+  border-radius: 30px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 3px 8px 1px inset,
+    rgb(0 0 0 / 50%) 0px 1px 0px inset, rgb(255 255 255 / 20%) 0px 1px 0px;
+}
+
+.header-container {
+  background-color: #353a40;
+  padding: 0 1.5rem;
+  height: 100px;
+  position: fixed;
+}
+
+.nav-active {
+  border-radius: 25px;
+  background: rgb(53, 58, 64);
+  box-shadow: rgb(255 255 255 / 20%) 0px 1px 0px inset,
+    rgb(0 0 0 / 30%) 0px 0px 8px, rgb(0 0 0 / 40%) 0px 12px 12px;
+  transition: all 0.5s ease 0s;
+}
+
+.hover\:nav-header-item:hover {
+  --tw-bg-opacity: 1;
+  border-radius: 15px;
+  background: rgb(53, 58, 64);
+  box-shadow: rgb(255 255 255 / 20%) 0px 1px 0px inset;
+}
+
+.bg-dark-blue {
+  background-color: #27293d;
+}
+
+.box-shadow {
+  box-shadow: rgb(0 0 0 / 25%) 0 0px 35px 15px;
+}
+
+.bg-light-purple {
+  background-color: #44516e;
+}
+
+.bg-dark-purple {
+  background-color: #304067;
+}
+
+.hover\:bg-purple:hover {
+  background-color: #44516e;
+}
+
+.bg-blue {
+  background-color: #1d64e4;
+}
+
+.bg-black {
+  background-color: #1d1e20;
+}
+
+.-mt-13 {
+  margin-top: -4.3rem;
+}
+
+.from-dark-purple {
+  --tw-gradient-to: #253250;
+  --tw-gradient-from: #344366;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-light-purple {
+  --tw-gradient-to: #253250;
+}
+
+.bg-btn-purple {
+  background-color: #344366;
+}
+
+.overflow-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+  display: none;
+}
+
+.input-container-style {
+  background: linear-gradient(rgb(36, 39, 43) 0%, rgb(39, 44, 48) 100%);
+  box-shadow: rgb(255 255 255 / 30%) 0px 1px 0px,
+    rgb(0 0 0 / 50%) 0px 2px 3px inset;
+  border-radius: 100px;
+  width: 100%;
+  height: 40px;
+  position: relative;
+  text-align: right;
+}
+
+.input-style {
+  background: transparent;
+  height: 40px;
+  border: 0px;
+  text-align: right;
+  font-size: 20px;
+  outline: none;
+  color: white;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.chain-select {
+  -webkit-box-align: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  padding: 8px 0;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 0.3rem 1rem;
+}
+
+.hover\:chain-select:hover {
+  background-color: #44516e;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.switch-btn {
+  background-color: #33363f;
+  color: #989a9e;
+}
+
+.-mt-155 {
+  margin-top: -155px;
+}
+.mt-100 {
+  margin-top: 100px;
+}
+.bg-dark-magento {
+  background-color: #1d3049 !important;
+}
+
+.text-dark-blue {
+  color: #3d7ed8;
+}
+
+.text-12 {
+  font-size: 12px;
+}
+
+.text-16 {
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  .sm\:w-600 {
+    width: 600px;
+  }
+  .xs\:logo-text {
+    display: block;
+  }
+  .sm\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .xs\:w-500 {
+    width: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  .md\:visible-menu {
+    display: flex;
+  }
+  .md\:hidden-icon {
+    display: none;
+  }
+  .md\:w-700 {
+    width: 700px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:w-450 {
+    width: 450px;
+  }
+}
+
+@media (min-width: 480px) {
+  .xs\:text-button {
+    font-size: 16px;
+  }
+
+  .xs\:text-input {
+    font-size: 20px;
+  }
+
+  .xs\:input-style {
+    height: 48px;
+  }
+
+  .xs\:input-container-style {
+    height: 48px;
+  }
+}
