@@ -131,28 +131,30 @@ export const removeLiquidity = async (web3, withdrawType, percentValue, tokens) 
   arrayValue[0] = web3.utils.toWei(tokens[2].tokenRef.current.value, 'mwei') // usdc
 
   if (withdrawType == "All") {
-    let busdArrayValue = await contract.methods.calculateRemoveLiquidity(accounts[0], arrayValue[2]).call()
-    await contract.methods
-      .removeLiquidity(arrayValue[2], busdArrayValue, deadline)
-      .send({ from: accounts[0] })
-      .on("receipt", () => {
-        // setRefresh(refresh + 1);
-      });
-    let usdtArrayValue = await contract.methods.calculateRemoveLiquidity(accounts[0], arrayValue[1]).call()
-    await contract.methods
-      .removeLiquidity(arrayValue[1], usdtArrayValue, deadline)
-      .send({ from: accounts[0] })
-      .on("receipt", () => {
-        // setRefresh(refresh + 1);
-      });
-    let usdcArrayValue = await contract.methods.calculateRemoveLiquidity(accounts[0], arrayValue[0]).call()
-    await contract.methods
-      .removeLiquidity(arrayValue[0], usdcArrayValue, deadline)
-      .send({ from: accounts[0] })
-      .on("receipt", () => {
-        // setRefresh(refresh + 1);
-      });
+
   }
+
+  // let busdArrayValue = await contract.methods.calculateRemoveLiquidity(accounts[0], arrayValue[2]).call()
+  // await contract.methods
+  //   .removeLiquidity(arrayValue[2], busdArrayValue, deadline)
+  //   .send({ from: accounts[0] })
+  //   .on("receipt", () => {
+  //     // setRefresh(refresh + 1);
+  //   });
+  // let usdtArrayValue = await contract.methods.calculateRemoveLiquidity(accounts[0], arrayValue[1]).call()
+  // await contract.methods
+  //   .removeLiquidity(arrayValue[1], usdtArrayValue, deadline)
+  //   .send({ from: accounts[0] })
+  //   .on("receipt", () => {
+  //     // setRefresh(refresh + 1);
+  //   });
+  // let usdcArrayValue = await contract.methods.calculateRemoveLiquidity(accounts[0], arrayValue[0]).call()
+  // await contract.methods
+  //   .removeLiquidity(arrayValue[0], usdcArrayValue, deadline)
+  //   .send({ from: accounts[0] })
+  //   .on("receipt", () => {
+  //     // setRefresh(refresh + 1);
+  //   });
 
   console.log(withdrawType)
 

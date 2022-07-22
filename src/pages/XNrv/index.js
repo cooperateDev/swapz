@@ -19,7 +19,7 @@ export default function XNrvPage() {
               <XNRVForm />
             </div>
             <div className="w-full sm:w-600 justify-self-center">
-              <StakeCard poolName={XNERVE_POOL_NAME} />
+              <StakeCard pid={1} />
             </div>
           </Grid>
         </StandardPageContainer>

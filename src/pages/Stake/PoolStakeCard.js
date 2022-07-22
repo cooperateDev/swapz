@@ -5,10 +5,15 @@ import { getPoolUrl } from "../../utils/urls"
 import StakeCard from "../../components/StakeCard"
 import LinkButton from "../../components/LinkButton"
 
-export default function PoolStakeCard({ poolName }) {
+import { STAKING_POOLS } from "../../constants/constant"
+
+export default function PoolStakeCard({ pid }) {
+  const pool = STAKING_POOLS[pid];
+  const poolName = pool.name;
   const href = getPoolUrl({ poolName })
   return (
     <StakeCard
+      pid={pid}
       poolName={poolName}
       poolLabel={<JumpToPoolButton poolName={poolName} href={href} />}
       rightContent={<LinkButton href={href} />}
