@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react"
+
 import { Link } from "react-router-dom"
 
 import { RUSD_POOL_NAME, METAPOOL_NAMES } from "../../constants"
@@ -18,7 +20,34 @@ import CoinLabels from "./CoinLabels"
 
 import { getPoolStats } from "./getPoolStats"
 
+import {
+  getWeb3,
+  getBUSDValue,
+  getUSDTValue,
+  getUSDCValue
+} from "../../components/contracts/liquidityContract"
+
+import {
+  getApr
+} from "../../components/contracts/masterMind"
+
 export default function PoolsListCard({ poolName }) {
+
+  const [apr, setApr] = useState()
+  const [totalLiquidityUSD, setTotalLiquidityUSD] = useState()
+
+  useEffect(() => {
+    (async () => {
+      const readProvider = getWeb3()
+      const busdValue = await getBUSDValue(readProvider)
+      const usdtValue = await getUSDTValue(readProvider)
+      const usdcValue = await getUSDCValue(readProvider)
+      setTotalLiquidityUSD((busdValue + usdtValue + usdcValue).toFixed(2))
+      const aprTemp = await getApr(readProvider, 0)
+      setApr(aprTemp)
+    })()
+  }, [])
+
   const {
     poolRouterIndex,
     coins,
@@ -37,7 +66,7 @@ export default function PoolsListCard({ poolName }) {
   } else {
     apyInfoObj = {
       infoTooltip: yearlyAPRUnvestedStr && <ApyTooltip apyData={apy} />,
-      content: <>{yearlyAPRUnvestedStr ?? <LoadingSpinner />}%</>,
+      content: <>{apr}%</>,
     }
   }
 
@@ -63,7 +92,7 @@ export default function PoolsListCard({ poolName }) {
             <StatDisplay
               className="pr-8 lg:pr-12 xl:pr-14"
               title="Total Liquidity"
-              content={<>${totalLockedUSDStr ?? <LoadingSpinner />}</>}
+              content={<>${totalLiquidityUSD}</>}
             />
 
             <StatDisplay title="APR" {...apyInfoObj} />

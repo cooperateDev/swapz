@@ -86,7 +86,7 @@ export default function PortfolioListItem({
         </div>
         <div className="h-full w-full self-center">
           <div>
-            <BalanceSection label="Total Balance" linkTo={balanceLinkTo} />
+            <BalanceSection label="Total Balance" address={token.addresses[56]} linkTo={balanceLinkTo} />
             {poolId > -1 && <StakedBalanceSection stakeLinkTo={stakeLinkTo} />}
           </div>
         </div>

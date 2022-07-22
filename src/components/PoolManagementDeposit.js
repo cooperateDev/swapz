@@ -3,6 +3,8 @@ import { useEffect, useState, useContext, useCallback } from "react"
 import TokenInput from "../components/TokenInput"
 import BaseButton from "../components/BaseButton"
 
+import { useLocation } from "react-router";
+
 import { WalletContext } from "../components/layouts/walletContext"
 import {
   getWeb3,
@@ -18,6 +20,7 @@ export default function PoolManagementDeposit({ tokens }) {
 
   const readProvider = getWeb3()
   let toastFlag = 1
+  const location = useLocation();
 
   const myPromise = new Promise(resolve => setTimeout(resolve, 3000));
 
@@ -52,7 +55,7 @@ export default function PoolManagementDeposit({ tokens }) {
         });
       }
     }
-
+    location.reload();
 
   }
   return (

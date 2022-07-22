@@ -4,10 +4,14 @@ import Slider from "react-input-slider"
 import { getCoinTextColor } from "../utils/coinStyles"
 
 import Grid from "../components/tailwind/Grid"
+import { useLocation } from "react-router";
 
 import TokenInput from "../components/TokenInput"
 import RadioButton from "../components/RadioButton"
 import BaseButton from "./BaseButton"
+
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 import { PercentContext } from "../components/layouts/PercentContext"
 
@@ -24,11 +28,23 @@ export default function PoolManagementWithdraw({ tokens }) {
   const { provider, setProvider, walletAddress, setWalletAddress } =
     useContext(WalletContext)
 
+  const location = useLocation();
+  let toastFlag = 1;
+  const myPromise = new Promise(resolve => setTimeout(resolve, 3000));
+
   const getWithdrawInput = () => {
     tokens.map((tk, index) => {
       console.log(formStateData.percentage, formStateData.withdrawType, tk.tokenRef.current.value)
     })
-    removeLiquidity(provider, formStateData.withdrawType, formStateData.percentage, tokens)
+    toastFlag = removeLiquidity(provider, formStateData.withdrawType, formStateData.percentage, tokens)
+    if (toastFlag == 0) {
+      toast.promise(myPromise, {
+        pending: "Promise is pending",
+        success: "The amount you want to remove liquidity is greater than the amount you have in your wallet.",
+        error: "error"
+      });
+    }
+    location.reload();
   }
   const [formStateData, setFormStateData] = useState({
     withdrawType: "ALL",
@@ -158,6 +174,14 @@ export default function PoolManagementWithdraw({ tokens }) {
       >
         Withdraw
       </BaseButton>
+      <ToastContainer
+        autoClose={3000}
+        className="toast-container"
+        toastClassName="dark-toast"
+        toastStyle={{
+          top: "5rem",
+          right: "2rem"
+        }} />
     </div>
   )
 }

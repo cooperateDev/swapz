@@ -8,6 +8,23 @@ export default function ContractListItem({ token, description, docUrl }) {
   const symbol = token.symbol
   const address = token.addresses[ChainId.BSC]
   const icon = token.icon
+  const decimals = token.decimals
+
+  const addMetamask = async () => {
+    // console.log(address, symbol, decimals, icon, token)
+    await window.ethereum.request({
+      method: 'wallet_watchAsset',
+      params: {
+        type: 'ERC20', // Initially only supports ERC20, but eventually more!
+        options: {
+          address: address, // The address that the token is at.
+          symbol: symbol, // A ticker symbol or shorthand, up to 5 chars.
+          decimals: decimals, // The number of decimals in the token
+          image: icon, // A string url of the token logo
+        },
+      },
+    });
+  }
 
   return (
     <li className="ml-auto py-2">
@@ -24,7 +41,7 @@ export default function ContractListItem({ token, description, docUrl }) {
             <button
               className={`px-2 float-right`}
             >
-              <img src={METAMASK_ICON} className="h-6 w-6 inline" />
+              <img src={METAMASK_ICON} className="h-6 w-6 inline" onClick={addMetamask} />
             </button>
           </div>
           <div>

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react"
+
 import { Link, useParams } from "react-router-dom"
 
 import { ChevronLeftIcon } from "@heroicons/react/outline"
@@ -25,7 +27,27 @@ import StandardPageContainer from "../../components/layouts/StandardPageContaine
 import PoolInfoSection from "./PoolInfoSection"
 import PoolManagement from "./PoolManagement"
 
+import {
+  getWeb3
+} from "../../components/contracts/liquidityContract"
+
+import {
+  getApr
+} from "../../components/contracts/masterMind"
+
 export default function Pool() {
+
+  const [apr, setApr] = useState(0)
+
+  useEffect(() => {
+    (async () => {
+      const readProvider = getWeb3()
+      const aprTemp = await getApr(readProvider, 0)
+      console.log(aprTemp, "=================1111")
+      setApr(aprTemp)
+    })()
+  }, [])
+
   const { id } = useParams()
   const poolName = ROUTER_INDEX[id]
 
@@ -46,7 +68,7 @@ export default function Pool() {
     poolStakingLink = STAKE_PATH
   } else {
     infoTitle = poolName
-    rightContent = `APY: 0%`
+    rightContent = "APR:" + apr + "%"
     poolStakingLink = STAKE_PATH
   }
 

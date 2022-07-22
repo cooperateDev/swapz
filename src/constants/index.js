@@ -63,8 +63,8 @@ export const STABLECOIN_SWAP_ADDRESSES = {
 }
 
 export const STABLE_SWAP_TOKEN_ADDRESSES = {
-  [ChainId.BSC]: "0xf2511b5e4fb0e5e2d123004b672ba14850478c14",
-  [ChainId.HARDHAT]: "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B",
+  [ChainId.BSC]: "0x4c86ba408Ade1dF2397a7Fb9d56b0D50ce8E1502",
+  [ChainId.HARDHAT]: "0x4c86ba408Ade1dF2397a7Fb9d56b0D50ce8E1502",
 }
 
 export const TOKEN_DIST_ADDRESSES = {
@@ -78,8 +78,8 @@ export const TOKEN_DIST_ADDRESSES2 = {
 export const STABLE_SWAP_TOKEN = new Token(
   STABLE_SWAP_TOKEN_ADDRESSES,
   18,
-  "3NRV-LP",
-  "Nerve 3Pool LP Token",
+  "3SWAPZ-LP",
+  "SWAPZ 3Pool LP Token",
   nerveLogo
 )
 
@@ -124,8 +124,8 @@ export const NRVETH_SWAP_TOKEN = new Token(
 // 3Pool Stables
 
 const BUSD_CONTRACT_ADDRESSES = {
-  [ChainId.BSC]: "0xe9e7cea3dedca5984780bafc599bd69add087d56",
-  [ChainId.HARDHAT]: "0x0B306BF915C4d645ff596e518fAf3F9669b97016",
+  [ChainId.BSC]: "0x334F16dd7ede5F552a40342D045BB54aEFDdD6DB",
+  [ChainId.HARDHAT]: "0x334F16dd7ede5F552a40342D045BB54aEFDdD6DB",
 }
 export const BUSD = new Token(
   BUSD_CONTRACT_ADDRESSES,
@@ -136,8 +136,8 @@ export const BUSD = new Token(
 )
 
 const USDC_CONTRACT_ADDRESSES = {
-  [ChainId.BSC]: "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
-  [ChainId.HARDHAT]: "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c",
+  [ChainId.BSC]: "0xcBA912F1388e6fA7Ae8dD6f387073d7801Fb9DE9",
+  [ChainId.HARDHAT]: "0xcBA912F1388e6fA7Ae8dD6f387073d7801Fb9DE9",
 }
 
 export const USDC = new Token(
@@ -149,8 +149,8 @@ export const USDC = new Token(
 )
 
 const USDT_CONTRACT_ADDRESSES = {
-  [ChainId.BSC]: "0x55d398326f99059ff775485246999027b3197955",
-  [ChainId.HARDHAT]: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
+  [ChainId.BSC]: "0x051d4AB215ec7Af84A5f7592C21d76129bECaA4d",
+  [ChainId.HARDHAT]: "0x051d4AB215ec7Af84A5f7592C21d76129bECaA4d",
 }
 
 export const USDT = new Token(
@@ -261,28 +261,28 @@ export const UST = new Token(
 
 // Nerve Contracts
 const NRV_CONTRACT_ADDRESSES = {
-  [ChainId.BSC]: "0x42F6f551ae042cBe50C739158b4f0CAC0Edb9096",
-  [ChainId.HARDHAT]: "0x42F6f551ae042cBe50C739158b4f0CAC0Edb9096",
+  [ChainId.BSC]: "0x4ab99FD9856f24Ea6dc421eeaae6370Cfd3Ae89e",
+  [ChainId.HARDHAT]: "0x4ab99FD9856f24Ea6dc421eeaae6370Cfd3Ae89e",
 }
 
 export const NRV = new Token(
   NRV_CONTRACT_ADDRESSES,
   18,
-  "NRV",
-  "Nerve",
+  "SWAPZ",
+  "SWAPZ",
   nerveLogo
 )
 
 export const XNERVE_CONTRACT_ADDRESSES = {
-  [ChainId.BSC]: "0x15B9462d4Eb94222a7506Bc7A25FB27a2359291e",
-  [ChainId.HARDHAT]: "0x15B9462d4Eb94222a7506Bc7A25FB27a2359291e",
+  [ChainId.BSC]: "0x120c120bA7ac52fd5c1145310aC9C1e697482773",
+  [ChainId.HARDHAT]: "0x120c120bA7ac52fd5c1145310aC9C1e697482773",
 }
 
 export const XNERVE_TOKEN = new Token(
   XNERVE_CONTRACT_ADDRESSES,
   18,
-  "xNRV",
-  "xNerve",
+  "xSWAPZ",
+  "xSWAPZ",
   nerveLogo
 )
 

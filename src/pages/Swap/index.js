@@ -176,12 +176,11 @@ function RemainingHomeContent() {
         <div className="flex flex-col my-6 text-center">
           <h3 className="text-default font-medium text-2xl">About Swapz</h3>
           <p className="mt-5 max-w-prose mx-auto text-lg  text-coolGray-700">
-            Nerve is a trustless on-ramp and stableswap on the Binance Smart
-            Chain.
+            Swapz stable is a trustless on-ramp and stableswap on the Velas(fork of Nerve).
           </p>
-          <p className="mt-2 max-w-prose mx-auto text-base  text-coolGray-500">
+          {/* <p className="mt-2 max-w-prose mx-auto text-base  text-coolGray-500">
             Bridge assets onto BSC and earn yield on BTC, ETH, and stablecoins
-          </p>
+          </p> */}
           <Grid cols={{ xs: 1 }} gap={2}>
             <div className="place-self-center">
               <Link to="/pools">

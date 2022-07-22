@@ -71,7 +71,7 @@ export default function PageWrapper({ children }) {
             </div>
             <div className=" font-medium text-2xl tracking-wider pl-2 ">
               <span className="hidden xs:logo-text bg-clip-text  bg-gradient-to-r text-transparent from-purple-600 to-blue-600 hover:animate-pulse active:from-purple-700 active:to-blue-700 transform transition-all">
-                Swapz
+                Stable Swapz
               </span>
             </div>
           </div>
@@ -82,11 +82,11 @@ export default function PageWrapper({ children }) {
             {/* <SidebarNavLink to={BRIDGE_PATH} labelText="Bridge" /> */}
             <SidebarNavLink to={POOLS_PATH} labelText="Pools" />
             <SidebarNavLink to={STAKE_PATH} labelText="Stake" />
-            <SidebarNavLink to={XNRV_STAKING_PATH} labelText="xNRV" />
+            <SidebarNavLink to={XNRV_STAKING_PATH} labelText="xSwapz" />
             <SidebarNavLink to={CONTRACTS_PATH} labelText="Contract Info" />
             <SidebarNavLink to={PORTFOLIO_PATH} labelText="Portfolio" />
             {/* <SidebarNavLink to={STATISTICS_PATH} labelText="Statistics" /> */}
-            <SidebarNavLink to={CLAIM_PATH} labelText="Claim" />
+            {/* <SidebarNavLink to={CLAIM_PATH} labelText="Claim" /> */}
           </div>
         </Col>
         <div className="flex align-center">
@@ -136,7 +136,7 @@ export default function PageWrapper({ children }) {
       />
       <SidebarNavLink
         to={XNRV_STAKING_PATH}
-        labelText="xNRV"
+        labelText="xSWAPZ"
         IconComponent={DollarIcon}
       />
       <SidebarNavLink
@@ -154,11 +154,11 @@ export default function PageWrapper({ children }) {
         labelText="Statistics"
         IconComponent={ChartBarIcon}
       /> */}
-      <SidebarNavLink
+      {/* <SidebarNavLink
         to={CLAIM_PATH}
         labelText="Claim"
         IconComponent={DollarIcon}
-      />
+      /> */}
     </Grid>
   )
 
