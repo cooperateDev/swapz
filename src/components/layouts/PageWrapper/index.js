@@ -64,7 +64,7 @@ export default function PageWrapper({ children }) {
   const navBlock = (
     <>
       <div className="flex border-custom text-white w-full justify-between align-center header-container z-50">
-        <a href={NERVE_HOME_URL}>
+        <a href={"/"}>
           <div className="flex items-center flex-shrink-0 px-4 py-1 ">
             <div className="mr-2">
               <NerveLogoSvg />
@@ -106,7 +106,7 @@ export default function PageWrapper({ children }) {
             </BaseButton>
           </div>
         </div>
-      </div>
+      </div >
     </>
   )
 
