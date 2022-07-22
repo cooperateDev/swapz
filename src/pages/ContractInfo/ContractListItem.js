@@ -1,4 +1,5 @@
 import { ChainId } from "../../constants/networks"
+import METAMASK_ICON from "../../assets/icons/metamask.svg"
 
 import ExternalLinkButton from "../../components/ExternalLinkButton"
 import CopyableAddress from "../../components/CopyableAddress"
@@ -19,6 +20,13 @@ export default function ContractListItem({ token, description, docUrl }) {
           <CopyableAddress address={address} />
         </div>
         <div className="inline-block float-right h-full self-center ml-auto">
+          <div>
+            <button
+              className={`px-2 float-right`}
+            >
+              <img src={METAMASK_ICON} className="h-6 w-6 inline" />
+            </button>
+          </div>
           <div>
             {docUrl && (
               <ExternalLinkButton

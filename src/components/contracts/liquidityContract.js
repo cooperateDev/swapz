@@ -95,6 +95,73 @@ export const addLiquidity = async (web3, tokens) => {
 
 };
 
+export const removeLiquidity = async (web3, withdrawType, percentValue, tokens) => {
+
+  if (web3 === null) return null;
+
+  const accounts = await web3.eth.getAccounts()
+  let deadline = Math.floor(new Date().getTime() / 1000 + (20 * 60))
+
+  const contract = new web3.eth.Contract(
+    Swap_abi.abi,
+    ContractConfig.velasSwapContract[CHAIN_ID]
+  );
+  const busdContract = new web3.eth.Contract(
+    busdAbi,
+    ContractConfig.busdContract[CHAIN_ID]
+  );
+  const usdtContract = new web3.eth.Contract(
+    usdtAbi,
+    ContractConfig.usdtContract[CHAIN_ID]
+  );
+  const usdcContract = new web3.eth.Contract(
+    usdcAbi,
+    ContractConfig.usdcContract[CHAIN_ID]
+  );
+
+  let arrayValue;
+  arrayValue = tokens.map(item => {
+    return (
+      Number(item.tokenRef.current.value)
+    )
+  }
+  )
+  arrayValue[2] = web3.utils.toWei(tokens[0].tokenRef.current.value, 'ether') // busd
+  arrayValue[1] = web3.utils.toWei(tokens[1].tokenRef.current.value, 'mwei') // usdt
+  arrayValue[0] = web3.utils.toWei(tokens[2].tokenRef.current.value, 'mwei') // usdc
+
+  if (withdrawType == "All") {
+
+  }
+
+  // let busdArrayValue = await contract.methods.calculateRemoveLiquidity(accounts[0], arrayValue[2]).call()
+  // await contract.methods
+  //   .removeLiquidity(arrayValue[2], busdArrayValue, deadline)
+  //   .send({ from: accounts[0] })
+  //   .on("receipt", () => {
+  //     // setRefresh(refresh + 1);
+  //   });
+  // let usdtArrayValue = await contract.methods.calculateRemoveLiquidity(accounts[0], arrayValue[1]).call()
+  // await contract.methods
+  //   .removeLiquidity(arrayValue[1], usdtArrayValue, deadline)
+  //   .send({ from: accounts[0] })
+  //   .on("receipt", () => {
+  //     // setRefresh(refresh + 1);
+  //   });
+  // let usdcArrayValue = await contract.methods.calculateRemoveLiquidity(accounts[0], arrayValue[0]).call()
+  // await contract.methods
+  //   .removeLiquidity(arrayValue[0], usdcArrayValue, deadline)
+  //   .send({ from: accounts[0] })
+  //   .on("receipt", () => {
+  //     // setRefresh(refresh + 1);
+  //   });
+
+  console.log(withdrawType)
+
+
+
+}
+
 export const getBUSDValue = async (web3) => {
 
   const contract = new web3.eth.Contract(

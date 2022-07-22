@@ -10,9 +10,7 @@ import LiquidityManagementTabs from "./LiquidityManagementTabs"
 export default function DepositDisplay({
   tokens,
   poolTokens,
-  poolStakingLink,
-  poolStakingLinkText,
-  poolName,
+  props
 }) {
   const location = useLocation()
   const navigate = useNavigate()
@@ -54,11 +52,11 @@ export default function DepositDisplay({
           )}
         </div>
       </div>
-      {poolStakingLink && (
+      {props.poolStakingLink && (
         <PoolStakingButton
-          poolName={poolName}
-          poolStakingLink={poolStakingLink}
-          poolStakingLinkText={poolStakingLinkText}
+          poolName={props.poolName}
+          poolStakingLink={props.poolStakingLink}
+          poolStakingLinkText={props.poolStakingLinkText}
         />
       )}
     </div>

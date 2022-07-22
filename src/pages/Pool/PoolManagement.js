@@ -20,5 +20,5 @@ export default function PoolManagement(props) {
     tokenRef: tokenRefs[key],
   }))
 
-  return <DepositDisplay {...{ props, tokens, poolTokens }} />
+  return <DepositDisplay props={props} tokens={tokens} poolTokens={poolTokens} />
 }
