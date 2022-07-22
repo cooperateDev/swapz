@@ -211,10 +211,10 @@ export const getCoinBalance = async (web3, fromSymbol) => {
       return Number(web3.utils.fromWei(busdValue, 'ether'))
     case "USDT":
       const usdtValue = await usdtContract.methods.balanceOf(ContractConfig.velasSwapContract[CHAIN_ID]).call()
-      return Number(web3.utils.fromWei(usdtValue, 'ether'))
+      return Number(web3.utils.fromWei(usdtValue, 'mwei'))
     case "USDC":
       const usdcValue = await usdcContract.methods.balanceOf(ContractConfig.velasSwapContract[CHAIN_ID]).call()
-      return Number(web3.utils.fromWei(usdcValue, 'ether'))
+      return Number(web3.utils.fromWei(usdcValue, 'mwei'))
     default:
       break;
   }

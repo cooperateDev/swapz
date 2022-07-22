@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 
 import BalanceInputContainer from "../components/BalanceInputContainer"
 import BaseButton from "../components/BaseButton"
+import { PercentContext } from "../components/layouts/PercentContext"
 
 import {
   getWeb3,
@@ -23,12 +24,16 @@ export default function InteractiveInputRow({
   icon,
   showButton = true,
   inputRef,
+  tap
 }) {
 
   const [balanceValue, setBalanceValue] = useState()
+  const { percentValue, setPercentValue } =
+    useContext(PercentContext)
+  const [inputValue, setInputValue] = useState();
 
   useEffect(() => {
-    (async () => {
+    const f = async () => {
       const readProvider = getWeb3()
       const busdValue = await getBUSDValue(readProvider)
       const usdtValue = await getUSDTValue(readProvider)
@@ -37,18 +42,22 @@ export default function InteractiveInputRow({
       switch (title) {
         case "BUSD":
           setBalanceValue(busdValue.toFixed(2));
+          setInputValue(busdValue / 100 * percentValue)
           break;
         case "USDT":
           setBalanceValue(usdtValue.toFixed(2));
+          setInputValue(usdtValue / 100 * percentValue)
           break;
         case "USDC":
           setBalanceValue(usdcValue.toFixed(2));
+          setInputValue(usdcValue / 100 * percentValue)
           break;
         default:
           break;
       }
-    })()
-  }, [])
+    };
+    f()
+  }, [percentValue])
 
   let titleContent
   if (icon) {
@@ -78,7 +87,7 @@ export default function InteractiveInputRow({
           <div className="input-container-style xs:input-container-style xs:text-button">
             <input
               className="input-style xs:input-style xs:text-button"
-              value={value}
+              defaultValue={tap && inputValue ? inputValue : ""}
               placeholder={placeholder}
               onChange={onChange}
               ref={inputRef}

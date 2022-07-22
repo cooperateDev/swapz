@@ -82,16 +82,31 @@ export default function SwapCard({
   )
 
   const execuateSwap = () => {
-    console.log(fromCoin.symbol, fromRef.current.value, toCoin.symbol, toRef.current.value)
-    toastFlag = swap(provider, fromCoin.symbol, fromRef.current.value, toCoin.symbol)
-
-    if (toast == 0) {
+    if (fromRef.current.value == "undefined" || fromRef.current.value == "") {
       toast.promise(myPromise, {
         pending: "Promise is pending",
-        success: "The amount you want to add liquidity is greater than the amount you have in your wallet.",
+        success: "Please input the data",
         error: "error"
       });
+    } else if (toRef.current.value == "undefined" || toRef.current.value == "") {
+      toast.promise(myPromise, {
+        pending: "Promise is pending",
+        success: "Please input the data",
+        error: "error"
+      });
+    } else {
+      // console.log(fromCoin.symbol, fromRef.current.value, toCoin.symbol, toRef.current.value)
+      toastFlag = swap(provider, fromCoin.symbol, fromRef.current.value, toCoin.symbol)
+
+      if (toastFlag == 0) {
+        toast.promise(myPromise, {
+          pending: "Promise is pending",
+          success: "The amount you want to add liquidity is greater than the amount you have in your wallet.",
+          error: "error"
+        });
+      }
     }
+
   }
 
   const swapCardMainContent = (
@@ -113,8 +128,8 @@ export default function SwapCard({
         className="toast-container"
         toastClassName="dark-toast"
         toastStyle={{
-          top: "5rem",
-          right: "2rem"
+          top: "0rem",
+          right: "5rem"
         }} />
       <Transition
         appear={true}

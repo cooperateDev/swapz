@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import Slider from "react-input-slider"
 
 import { getCoinTextColor } from "../utils/coinStyles"
@@ -9,18 +9,53 @@ import TokenInput from "../components/TokenInput"
 import RadioButton from "../components/RadioButton"
 import BaseButton from "./BaseButton"
 
+import { PercentContext } from "../components/layouts/PercentContext"
+
+import {
+  getWeb3,
+  removeLiquidity,
+} from "../components/contracts/liquidityContract"
+import { WalletContext } from "../components/layouts/walletContext"
+
 export default function PoolManagementWithdraw({ tokens }) {
+
+  const { percentValue, setPercentValue } =
+    useContext(PercentContext)
+  const { provider, setProvider, walletAddress, setWalletAddress } =
+    useContext(WalletContext)
+
   const getWithdrawInput = () => {
-    console.log(tokens)
+    tokens.map((tk, index) => {
+      console.log(formStateData.percentage, formStateData.withdrawType, tk.tokenRef.current.value)
+    })
+    removeLiquidity(provider, formStateData.withdrawType, formStateData.percentage, tokens)
   }
   const [formStateData, setFormStateData] = useState({
     withdrawType: "ALL",
     percentage: "",
     tokenInputs: "",
   })
-  const [percentValue, setPercentValue] = useState()
-  function onFormChange(data) {
-    setFormStateData(data)
+
+  function onFormChange(data, isRadio = false) {
+    if (isRadio) {
+      tokens.map((tk) => {
+        tk.tokenRef.current.value = ""
+      })
+    }
+    let isMultiInput = 0
+    let selectedSymbol = ""
+    tokens.map((tk) => {
+      if (tk.tokenRef.current.value !== "") {
+        isMultiInput++
+        selectedSymbol = tk.symbol
+      }
+    })
+    if (isMultiInput > 1) {
+      data = { ...data, withdrawType: "" }
+    } else if (isMultiInput == 1) {
+      data = { ...data, withdrawType: selectedSymbol }
+    }
+    setFormStateData({ ...formStateData, ...data })
     setPercentValue(data.percentage)
   }
   return (
@@ -48,6 +83,7 @@ export default function PoolManagementWithdraw({ tokens }) {
             onChange={({ x }) => {
               onFormChange({
                 percentage: String(x),
+                withdrawType: 'ALL'
               })
             }}
             styles={{
@@ -74,7 +110,8 @@ export default function PoolManagementWithdraw({ tokens }) {
           onChange={() =>
             onFormChange({
               withdrawType: "ALL",
-            })
+            },
+              true)
           }
           label="Combo"
         />
@@ -87,7 +124,8 @@ export default function PoolManagementWithdraw({ tokens }) {
               onChange={() =>
                 onFormChange({
                   withdrawType: t.symbol,
-                })
+                },
+                  true)
               }
               label={t.name}
             />
@@ -103,10 +141,12 @@ export default function PoolManagementWithdraw({ tokens }) {
               // inputValue={parseFloat(token.inputValue).toFixed(5)}
               onChange={(value) =>
                 onFormChange({
+                  percentage: 100,
                   tokenInputs: value,
                   withdrawType: token.symbol,
                 })
               }
+              tap="remove"
             />
           </div>
         )

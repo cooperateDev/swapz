@@ -22,16 +22,37 @@ export default function PoolManagementDeposit({ tokens }) {
   const myPromise = new Promise(resolve => setTimeout(resolve, 3000));
 
   const addLiquidityDeposit = () => {
-    toastFlag = addLiquidity(provider, tokens)
+    // toastFlag = addLiquidity(provider, tokens)/
     // console.log(tokens)
-    // console.log(tokens[0].tokenRef.current.value)
-    if (toast == 0) {
+    if (tokens[0].tokenRef.current.value == "") {
       toast.promise(myPromise, {
         pending: "Promise is pending",
-        success: "The amount you want to add liquidity is greater than the amount you have in your wallet.",
+        success: "P;ease input the data",
         error: "error"
       });
+    } else if (tokens[1].tokenRef.current.value == "") {
+      toast.promise(myPromise, {
+        pending: "Promise is pending",
+        success: "P;ease input the data",
+        error: "error"
+      });
+    } else if (tokens[2].tokenRef.current.value == "") {
+      toast.promise(myPromise, {
+        pending: "Promise is pending",
+        success: "P;ease input the data",
+        error: "error"
+      });
+    } else {
+      toastFlag = addLiquidity(provider, tokens)
+      if (toastFlag == 0) {
+        toast.promise(myPromise, {
+          pending: "Promise is pending",
+          success: "The amount you want to add liquidity is greater than the amount you have in your wallet.",
+          error: "error"
+        });
+      }
     }
+
 
   }
   return (
@@ -62,7 +83,6 @@ export default function PoolManagementDeposit({ tokens }) {
           top: "5rem",
           right: "2rem"
         }} />
-      {/* < priceImpact={priceImpact} /> */}
     </div>
   )
 }

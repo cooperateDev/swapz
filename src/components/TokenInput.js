@@ -1,7 +1,21 @@
+import { SWAPABLE_TOKENS_MAP } from "../constants"
 import InteractiveInputRow from "../components/InteractiveInputRow"
 
-function TokenInput({ symbol, icon, max, tokenRef }) {
+function TokenInput({ symbol, icon, max, tokenRef, onChange, tap = null }) {
   let balanceStr = "0.0"
+  console.log(tap)
+  function onChangeInput(e) {
+    const { decimals } = SWAPABLE_TOKENS_MAP[symbol]
+    const parsedValue = parseFloat("0" + e.target.value)
+    const periodIndex = e.target.value.indexOf(".")
+    const isValidInput = e.target.value === "" || !isNaN(parsedValue)
+    const isValidPrecision =
+      periodIndex === -1 || e.target.value.length - 1 - periodIndex <= decimals
+    if (isValidInput && isValidPrecision) {
+      // don't allow input longer than the token allows
+      onChange(e.target.value)
+    }
+  }
 
   return (
     <div className=" items-center">
@@ -13,6 +27,8 @@ function TokenInput({ symbol, icon, max, tokenRef }) {
           showButton={false}
           icon={icon}
           inputRef={tokenRef}
+          onChange={onChangeInput}
+          tap={tap}
         />
       </div>
     </div>
