@@ -29,30 +29,32 @@ export const getSwapzBusdLPPrice = async(web3) => {
     const busd = new web3.eth.Contract(erc20Abi, ContractConfig.busdContract[CHAIN_ID]);
     const lpToken = new web3.eth.Contract(erc20Abi, STAKING_POOLS[2].lpToken[CHAIN_ID]);
     const lpTokenSupply = web3.utils.fromWei(await swapzToken.methods.totalSupply().call());
-    const busdBalance = web3.utils.fromWei(await busd.methods.balanceOf(lpToken.address).call());
+    const busdBalance = web3.utils.fromWei(await busd.methods.balanceOf(lpToken._address).call());
     return busdBalance * 2 / lpTokenSupply;
 }
 
-export const getApr = async(web3, pid) => {
+export const getApr = async(web3, pid, days = 1) => {
     let tokenPrice;
     const swapzPrice = await getSwapzPrice(web3);
     const tokenContract = new web3.eth.Contract(erc20Abi, STAKING_POOLS[pid].lpToken[CHAIN_ID]);
     const tokenBalance = web3.utils.fromWei(await tokenContract.methods.balanceOf(ContractConfig.masterMind[CHAIN_ID]).call());
     if (tokenBalance == 0)
         return "∞";
-    const masterMind = new web3.eth.Contract(masterAbi, ContractConfig.masterMind[CHAIN_ID]);
+    const masterMind = new web3.eth.Contract(masterAbi.abi, ContractConfig.masterMind[CHAIN_ID]);
     if (pid == 0) {
         tokenPrice = await getVirtualPrice(web3);
     } else if (pid == 1) {
         tokenPrice = await getxSwapzPrice(web3);
-    } else if (pid == 3) {
+    } else if (pid == 2) {
         tokenPrice = await getSwapzBusdLPPrice(web3);
     }
     const currentBlock = await web3.eth.getBlockNumber();
-    const endBlock = currentBlock + BLOCKS_PER_DAY;
+    const endBlock = currentBlock + BLOCKS_PER_DAY * days;
     const totalAllocPoint = await masterMind.methods.totalAllocPoint().call();
-    const multiplier = await masterMind.methods.totalAllocPoint(currentBlock, endBlock).call();
+    const multiplier = await masterMind.methods.getMultiplier(currentBlock, endBlock).call();
     const swapzPerblock = web3.utils.fromWei(await masterMind.methods.swapzPerBlock().call());
+
+    console.log(tokenBalance, tokenPrice)
     return (swapzPerblock * swapzPrice * multiplier * STAKING_POOLS[pid].allocPoint / totalAllocPoint / (tokenBalance * tokenPrice) * 100).toFixed(2);
 }
 

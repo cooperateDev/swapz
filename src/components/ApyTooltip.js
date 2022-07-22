@@ -2,11 +2,11 @@ import { InformationCircleIcon } from "@heroicons/react/outline"
 
 import Tooltip from "../components/tailwind/Tooltip"
 
-export default function ApyTooltip() {
-  const fullCompoundedApy = 0
-  const weeklyApr = 0
-  const dailyApr = Math.round((0 / 7) * 100) / 100
-  const yearlyApr = Math.round(0 * 52 * 100) / 100
+export default function ApyTooltip({dailyApr, weeklyApr, yearlyApr}) {
+  // const fullCompoundedApy = 0
+  // const weeklyApr = 0
+  // const dailyApr = Math.round((0 / 7) * 100) / 100
+  // const yearlyApr = Math.round(0 * 52 * 100) / 100
 
   return (
     <Tooltip
@@ -17,13 +17,13 @@ export default function ApyTooltip() {
             <div>Daily APR</div>
             <div>Weekly APR</div>
             <div>Yearly APR</div>
-            <div>Yearly APY</div>
+            {/* <div>Yearly APY</div> */}
           </div>
           <div className="inline-block font-medium text-right float-right">
-            <div>{fixNumberToPercentageString(dailyApr)}</div>
-            <div>{fixNumberToPercentageString(weeklyApr)}</div>
-            <div>{fixNumberToPercentageString(yearlyApr)}</div>
-            <div>{fixNumberToPercentageString(fullCompoundedApy)}</div>
+            <div>{dailyApr}%</div>
+            <div>{weeklyApr}%</div>
+            <div>{yearlyApr}%</div>
+            {/* <div>{fixNumberToPercentageString(fullCompoundedApy)}</div> */}
           </div>
         </div>
       }

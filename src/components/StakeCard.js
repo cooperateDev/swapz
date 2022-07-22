@@ -45,6 +45,8 @@ export default function StakeCard({
   }
 
   const [apr, setApr] = useState("0");
+  const [aprWeekly, setAprWeekly] = useState("0");
+  const [aprYearly, setAprYearly] = useState("0");
 
   const web3 = getWeb3();
 
@@ -59,6 +61,8 @@ export default function StakeCard({
   useEffect(()=>{
     const setData = async () => {
       setApr(await getApr(web3, pid));
+      setAprWeekly(await getApr(web3, pid, 7));
+      setAprYearly(await getApr(web3, pid, 365));
       setTokenBalance(await getTokenBalance(provider, pool.lpToken[CHAIN_ID]));
       setStakedBalance(await getStakedTokenBalance(provider, pid));
       setPendingReward(Number(await getPendingReward(provider, pid)));
@@ -74,7 +78,7 @@ export default function StakeCard({
           </div>
           <div className="flex text-16 xs:text-input">
             <div>Earning {apr}% APR</div>
-            <ApyTooltip className="ml-1" />
+            <ApyTooltip className="ml-1" dailyApr={apr} weeklyApr={aprWeekly} yearlyApr={aprYearly}/>
           </div>
         </>
       }
