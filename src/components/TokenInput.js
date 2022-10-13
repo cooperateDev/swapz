@@ -5,6 +5,10 @@ function TokenInput({ symbol, icon, max, tokenRef, onChange, tap = null }) {
   let balanceStr = "0.0"
   console.log(tap)
   function onChangeInput(e) {
+    // const re = /^[0-9\b]+$/;
+    // if (e.target.value === '' || re.test(e.target.value)) {
+    //   this.setState({ value: e.target.value })
+    // }
     const { decimals } = SWAPABLE_TOKENS_MAP[symbol]
     const parsedValue = parseFloat("0" + e.target.value)
     const periodIndex = e.target.value.indexOf(".")

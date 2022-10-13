@@ -6,7 +6,7 @@ import ContractConfig from "../../constants/contractConfig";
 import { getVirtualPrice } from "./liquidityContract";
 import { CHAIN_ID, STAKING_POOLS, BLOCKS_PER_DAY } from "../../constants/constant";
 
-export const getSwapzPrice = async(web3) => {
+export const getSwapzPrice = async (web3) => {
     const swapzToken = new web3.eth.Contract(swapzAbi.abi, ContractConfig.swapz[CHAIN_ID]);
     const busd = new web3.eth.Contract(erc20Abi, ContractConfig.busdContract[CHAIN_ID]);
     // const lpTokenAddress = new web3.eth.Contract(erc20Abi.abi, STAKING_POOLS[2].lpToken[CHAIN_ID]);
@@ -15,7 +15,7 @@ export const getSwapzPrice = async(web3) => {
     return busdBalance / swapzBalance;
 }
 
-export const getxSwapzPrice = async(web3) => {
+export const getxSwapzPrice = async (web3) => {
     const swapzToken = new web3.eth.Contract(swapzAbi.abi, ContractConfig.swapz[CHAIN_ID]);
     const xswapz = new web3.eth.Contract(xswapzAbi.abi, ContractConfig.xswapz[CHAIN_ID]);
     const swapzBalance = web3.utils.fromWei(await swapzToken.methods.balanceOf(xswapz.address).call());
@@ -24,7 +24,7 @@ export const getxSwapzPrice = async(web3) => {
     return swapzBalance / xswapzSupply * (await getSwapzPrice(web3));
 }
 
-export const getSwapzBusdLPPrice = async(web3) => {
+export const getSwapzBusdLPPrice = async (web3) => {
     const swapzToken = new web3.eth.Contract(swapzAbi.abi, ContractConfig.swapz[CHAIN_ID]);
     const busd = new web3.eth.Contract(erc20Abi, ContractConfig.busdContract[CHAIN_ID]);
     const lpToken = new web3.eth.Contract(erc20Abi, STAKING_POOLS[2].lpToken[CHAIN_ID]);
@@ -33,7 +33,7 @@ export const getSwapzBusdLPPrice = async(web3) => {
     return busdBalance * 2 / lpTokenSupply;
 }
 
-export const getApr = async(web3, pid, days = 1) => {
+export const getApr = async (web3, pid, days = 1) => {
     let tokenPrice;
     const swapzPrice = await getSwapzPrice(web3);
     const tokenContract = new web3.eth.Contract(erc20Abi, STAKING_POOLS[pid].lpToken[CHAIN_ID]);
@@ -58,7 +58,7 @@ export const getApr = async(web3, pid, days = 1) => {
     return (swapzPerblock * swapzPrice * multiplier * STAKING_POOLS[pid].allocPoint / totalAllocPoint / (tokenBalance * tokenPrice) * 100).toFixed(2);
 }
 
-export const getStakedTokenBalance = async(web3, pid) => {
+export const getStakedTokenBalance = async (web3, pid) => {
     if (!web3)
         return 0;
     const account = (await web3.eth.getAccounts())[0];
@@ -67,7 +67,7 @@ export const getStakedTokenBalance = async(web3, pid) => {
     return web3.utils.fromWei(userInfo.amount);
 }
 
-export const getTokenBalance = async(web3, token, address = null) => {
+export const getTokenBalance = async (web3, token, address = null) => {
     if (!web3)
         return 0;
     let account = (await web3.eth.getAccounts())[0];
@@ -77,7 +77,7 @@ export const getTokenBalance = async(web3, token, address = null) => {
     return web3.utils.fromWei(await tokenContract.methods.balanceOf(account).call());
 }
 
-export const getPendingReward = async(web3, pid) => {
+export const getPendingReward = async (web3, pid) => {
     if (!web3)
         return 0;
     const account = (await web3.eth.getAccounts())[0];
@@ -86,7 +86,7 @@ export const getPendingReward = async(web3, pid) => {
     return web3.utils.fromWei(await masterMind.methods.pendingSwapz(pid, account).call());
 }
 
-export const poolDeposit = async(web3, pid, value) => {
+export const poolDeposit = async (web3, pid, value) => {
     if (!web3)
         return;
     const account = (await web3.eth.getAccounts())[0];
@@ -99,7 +99,7 @@ export const poolDeposit = async(web3, pid, value) => {
     await masterMind.methods.deposit(pid, web3.utils.toWei(value)).send({ from: account });
 }
 
-export const poolWithdraw = async(web3, pid, value) => {
+export const poolWithdraw = async (web3, pid, value) => {
     if (!web3)
         return;
     const account = (await web3.eth.getAccounts())[0];

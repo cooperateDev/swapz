@@ -37,25 +37,25 @@ export default function PortfolioContent() {
 
   return (
     <Grid cols={{ xs: 1 }} gap={6}>
-      <PortfolioGroupCard title="NRV Balances">
+      <PortfolioGroupCard title="Swapz Balances">
         <PortfolioListItem token={NRV} {...nrvItemProps} />
         <PortfolioListItem
           token={XNERVE_TOKEN}
           stakeLinkTo={XNRV_STAKING_PATH}
           {...nrvItemProps}
         />
-        <PortfolioListItem
+        {/* <PortfolioListItem
           token={NRV_BUSD_CAKE_TOKEN}
           stakeLinkTo={STAKE_PATH}
           getTitleLinkTo={() => PANCAKE_ADD_LIQUIDITY_NRV_BUSD_URL}
-        />
+        /> */}
       </PortfolioGroupCard>
       <PortfolioGroupCard title="Swap Pool Balances">
         <PortfolioListItem token={STABLE_SWAP_TOKEN} {...poolItemProps} />
-        <PortfolioListItem token={NRVBTC_SWAP_TOKEN} {...poolItemProps} />
-        <PortfolioListItem token={NRVETH_SWAP_TOKEN} {...poolItemProps} />
+        {/* <PortfolioListItem token={NRVBTC_SWAP_TOKEN} {...poolItemProps} />
+        <PortfolioListItem token={NRVETH_SWAP_TOKEN} {...poolItemProps} /> */}
       </PortfolioGroupCard>
-      <PortfolioGroupCard title="anyToken Balances">
+      {/* <PortfolioGroupCard title="anyToken Balances">
         <PortfolioListItem
           token={ANYBTC}
           getBalanceLinkToUrl={() => BRIDGE_PATH}
@@ -64,7 +64,7 @@ export default function PortfolioContent() {
           token={ANYETH}
           getBalanceLinkToUrl={() => BRIDGE_PATH}
         />
-      </PortfolioGroupCard>
+      </PortfolioGroupCard> */}
     </Grid>
   );
 }

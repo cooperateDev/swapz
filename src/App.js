@@ -43,7 +43,7 @@ export default function App() {
         <Route path={CONTRACTS_PATH} element={<ContractInfo />} />
         <Route path={PORTFOLIO_PATH} element={<Portfolio />} />
         {/* <Route path={STATISTICS_PATH} element={<Statistics />} /> */}
-        <Route path={CLAIM_PATH} element={<ClaimPage />} />
+        {/* <Route path={CLAIM_PATH} element={<ClaimPage />} /> */}
         <Route path="/home" element={<Home />} />
       </Routes>
     </ToastProvider>

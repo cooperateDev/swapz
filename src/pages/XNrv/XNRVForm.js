@@ -31,8 +31,8 @@ export default function XNRVForm() {
   const [minting, setMinting] = useState(false)
   const [redeeming, setRedeeming] = useState(false)
 
-  useEffect(()=>{
-    const gettingData = async() => {
+  useEffect(() => {
+    const gettingData = async () => {
       setSwapzBalance(await getTokenBalance(provider, contractConfig.swapz[CHAIN_ID]));
       setxSwapzBalance(await getTokenBalance(provider, contractConfig.xswapz[CHAIN_ID]));
     }
@@ -40,7 +40,7 @@ export default function XNRVForm() {
   })
 
   return (
-    <Card title="xNRV Mint">
+    <Card title="xSwapz Mint">
       <div className="mt-4">
         <InteractiveInputRow
           title="Mint"
@@ -55,16 +55,14 @@ export default function XNRVForm() {
           inputRef={mintRef}
           disabled={minting}
           onClickEnter={async (value) => {
-            if(Number(value) <= Number(swapzBalance))
-            {
+            if (Number(value) <= Number(swapzBalance)) {
               setMinting(true)
-              try{
+              try {
                 await mint(provider, value);
-              }catch(ex){}
+              } catch (ex) { }
               setMinting(false)
             }
-            else
-            {
+            else {
               toast.error('Insufficient balance', {
                 position: "top-right",
                 autoClose: 5000,
@@ -87,16 +85,14 @@ export default function XNRVForm() {
           inputRef={redeemRef}
           disabled={redeeming}
           onClickEnter={async (value) => {
-            if(Number(value) <= Number(xswapzBalance))
-            {
+            if (Number(value) <= Number(xswapzBalance)) {
               setRedeeming(true)
-              try{
+              try {
                 await redeem(provider, value);
-              }catch(ex){}
+              } catch (ex) { }
               setRedeeming(false)
             }
-            else
-            {
+            else {
               toast.error('Insufficient balance', {
                 position: "top-right",
                 autoClose: 5000,

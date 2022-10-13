@@ -25,23 +25,23 @@ import ContractListItem from "./ContractListItem";
 const CONTRACT_INFO = {
   NRV: {
     token: NRV,
-    description: "NRV is the base token behind nerve.fi",
-    docUrl: "https://docs.nerve.fi/tokeneconomics",
+    description: "SWZ is the base token behind SWAPZ",
+    // docUrl: "https://docs.nerve.fi/tokeneconomics",
   },
   XNERVE_TOKEN: {
     token: XNERVE_TOKEN,
-    description: "xNRV is the token that is used to stake NRV ",
-    docUrl: "https://docs.nerve.fi/xnrv-staking",
+    description: "xSWZ is the token that is used to stake SWAPZ ",
+    // docUrl: "https://docs.nerve.fi/xnrv-staking",
   },
   NRV_BUSD_CAKE_TOKEN: {
     token: NRV_BUSD_CAKE_TOKEN,
-    description: "The V2 Upgraded Cake NRV/BUSD Liquidity pool token",
-    docUrl: "https://docs.nerve.fi/nrv-busd-cake-lp",
+    description: "The V2 Upgraded Cake SWZ/BUSD Liquidity pool token",
+    // docUrl: "https://docs.nerve.fi/nrv-busd-cake-lp",
   },
   STABLE_SWAP_TOKEN: {
     token: STABLE_SWAP_TOKEN,
-    description: "Nerve's 3Pool stableswap LP token",
-    docUrl: "https://docs.nerve.fi/stable-swap-3pool",
+    description: "Swapz's 3Pool stableswap LP token",
+    // docUrl: "https://docs.nerve.fi/stable-swap-3pool",
   },
   NRVBTC_SWAP_TOKEN: {
     token: NRVBTC_SWAP_TOKEN,
@@ -120,25 +120,25 @@ export default function ContractInfoContent() {
       <ContractGroupCard title="Tokens">
         <ContractListItem {...CONTRACT_INFO.NRV} />
         <ContractListItem {...CONTRACT_INFO.XNERVE_TOKEN} />
-        <ContractListItem {...CONTRACT_INFO.NRV_BUSD_CAKE_TOKEN} />
+        {/* <ContractListItem {...CONTRACT_INFO.NRV_BUSD_CAKE_TOKEN} /> */}
         <ContractListItem {...CONTRACT_INFO.STABLE_SWAP_TOKEN} />
-        <ContractListItem {...CONTRACT_INFO.NRVBTC_SWAP_TOKEN} />
-        <ContractListItem {...CONTRACT_INFO.NRVETH_SWAP_TOKEN} />
+        {/* <ContractListItem {...CONTRACT_INFO.NRVBTC_SWAP_TOKEN} />
+        <ContractListItem {...CONTRACT_INFO.NRVETH_SWAP_TOKEN} /> */}
       </ContractGroupCard>
-      <ContractGroupCard title="BTC Tokens">
+      {/* <ContractGroupCard title="BTC Tokens">
         <ContractListItem {...CONTRACT_INFO.ANYBTC} />
         <ContractListItem {...CONTRACT_INFO.BTCB} />
-      </ContractGroupCard>
-      <ContractGroupCard title="ETH Tokens">
+      </ContractGroupCard> */}
+      {/* <ContractGroupCard title="ETH Tokens">
         <ContractListItem {...CONTRACT_INFO.ANYETH} />
         <ContractListItem {...CONTRACT_INFO.ETHB} />
-      </ContractGroupCard>
+      </ContractGroupCard> */}
       <ContractGroupCard title="USD Stablecoins">
         <ContractListItem {...CONTRACT_INFO.BUSD} />
         <ContractListItem {...CONTRACT_INFO.USDC} />
         <ContractListItem {...CONTRACT_INFO.USDT} />
-        <ContractListItem {...CONTRACT_INFO.RUSD} />
-        <ContractListItem {...CONTRACT_INFO.FUSDT} />
+        {/* <ContractListItem {...CONTRACT_INFO.RUSD} />
+        <ContractListItem {...CONTRACT_INFO.FUSDT} /> */}
       </ContractGroupCard>
     </Grid>
   );
